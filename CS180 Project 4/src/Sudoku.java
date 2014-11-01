@@ -193,10 +193,10 @@ public class Sudoku {
 	 * @return if the cell was solved
 	 */
 	private boolean solveCell(int row, int column) {
-		boolean cellSolved = nakedSingles(row, column);
+		boolean cellSolved = nakedSingles();
 
 		if (!cellSolved) {
-			cellSolved = hiddenSingles(row, column);
+			cellSolved = hiddenSingles();
 		}
 
 		return cellSolved;
