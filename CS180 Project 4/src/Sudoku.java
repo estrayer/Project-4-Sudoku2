@@ -90,17 +90,17 @@ public class Sudoku {
 	public boolean[] candidates(int row, int column) {
 		boolean[] result = new boolean[] { false, true, true, true, true, true,
 				true, true, true, true };
-		for (int x = 0; x < 9; x++) {
+		for (int x = 0; x < 9; x++) { //row
 			int value = board[x][column];
 			result[value] = false;
 		}
-		for (int y = 0; y < 9; y++) {
+		for (int y = 0; y < 9; y++) { //column
 			int value = board[row][y];
 			result[value] = false;
 		}
 		int[] location = findBoxRepresentative(row, column);
-		for (int x = 0; x < 3; x++) {
-			for (int y = 0; y < 3; y++) {
+		for (int x = location[0]; x < location[0]+3; x++) { //box
+			for (int y = location[1]; y < location[1]+3; y++) {
 				int value = board[x][y];
 				result[value] = false;
 			}
@@ -177,25 +177,6 @@ public class Sudoku {
 			}
 			System.out.println("  +-------+-------+-------+");
 		}
-	}
-
-	/**
-	 * Uses Naked Singles and Hidden Singles to attempt to solve a cell
-	 * 
-	 * @param row
-	 *            row of cell
-	 * @param column
-	 *            row of cell
-	 * @return if the cell was solved
-	 */
-	private boolean solveCell(int row, int column) {
-		boolean cellSolved = nakedSingles();
-
-		if (!cellSolved) {
-			cellSolved = hiddenSingles();
-		}
-
-		return cellSolved;
 	}
 
 	/**
