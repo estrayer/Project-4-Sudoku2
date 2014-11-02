@@ -117,7 +117,15 @@ public class SudokuTest {
 	@Test
 	public void testHiddenSingles() {
 		Sudoku game = new Sudoku();
-		int[][] board = game.stringToBoard("028007000 016083070 00020851 137290000 000730000 000046307 290070000 000860140 000300700");
+		int[][] board = game.stringToBoard("028007000016083070000020851137290000000730000000046307290070000000860140000300700");
+		
+		game.setBoard(board);
+		
+		game.hiddenSingles();
+		
+		board = game.stringToBoard("028007000016083070000620851137290000000730000000046307290070000000860140000300700");
+		
+		assertArrayEquals(board,game.board());
 		
 	}
 	@Test

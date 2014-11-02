@@ -224,26 +224,29 @@ public class Sudoku {
 			boolean candidateExists = false;
 
 			for (int x = 0; x < 9; x++) { // column
-				if (candidates(x, column)[candidate]) {
+				if (board[x][column]== 0 && x != row && candidates(x, column)[candidate]) {
 					candidateExists = true;
 				}
 			}
-
-			for (int y = 0; y < 9; y++) { // row
-				if (candidates(row, y)[candidate]) {
-					candidateExists = true;
-				}
-			}
-
-			int[] location = findBoxRepresentative(row, column);
-			for (int x = location[0]; x < location[0] + 3; x++) {
-				for (int y = location[1]; y < location[1] + 3; y++) {
-					if (candidates(row, y)[candidate]) {
+			if (candidateExists) {
+				candidateExists = false;
+				for (int y = 0; y < 9; y++) { // row
+					if ( board[row][y] == 0 && y != column && candidates(row, y)[candidate]) {
 						candidateExists = true;
 					}
 				}
+				if (candidateExists) {
+					candidateExists = false;
+					int[] location = findBoxRepresentative(row, column);
+					for (int x = location[0]; x < location[0] + 3; x++) {
+						for (int y = location[1]; y < location[1] + 3; y++) {
+							if ( board[x][y] == 0 && (x != row || y != column) && candidates(x, y)[candidate]) {
+								candidateExists = true;
+							}
+						}
+					}
+				}
 			}
-
 			if (!candidateExists) {
 				board[row][column] = candidate;
 				changed = true;
