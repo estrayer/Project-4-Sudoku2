@@ -41,7 +41,16 @@ public class SudokuTest {
 
 	@Test
 	public void testIsSolved() {
-		fail("Not yet implemented");
+		Sudoku game = new Sudoku();
+		game.setBoard(Sudoku.stringToBoard("534678912672195348198342567859761423426853791713924856961537284287419635345286179"));
+		assertTrue(game.isSolved());
+	}
+	
+	@Test
+	public void testIsSolvedFalse() {
+		Sudoku game = new Sudoku();
+		game.setBoard(Sudoku.stringToBoard("534678912672195348198302567859761423426853791713924856961537284287419635345286179"));
+		assertFalse(game.isSolved());
 	}
 
 	@Test
