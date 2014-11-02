@@ -213,30 +213,28 @@ public class Sudoku {
 	 */
 	private boolean nakedSingles() {
 		
-		int[][] oldBoard = board();
+		boolean changed = false;
 		
 		
-
 		for (int row = 0; row < board.length; row++) {
 			for (int col = 0; col < board.length; col++) {
-
-				boolean[] array = candidates(row, col);
-
-				int count = 0;
-				int x = 0;
-				for (int i = 0; i < array.length; i++) {
-					if (array[i]) {
-						count++;
-						x = i;
+				boolean[] candidatesArray = candidates(row, col);
+				int candidateCount = 0;
+				int trueCandidate = 0;
+				for (int i = 0; i < candidatesArray.length; i++) {
+					if (candidatesArray[i]) {
+						candidateCount++;
+						trueCandidate = i;
 					}
 				}
-				if (count == 1) {
-					board[row][col] = x;
+				if (candidateCount == 1) {
+					board[row][col] = trueCandidate;
+					changed = true;
 				}
 			}
 		}
 		
-		return !(oldBoard.equals(board));
+		return changed;
 	}
 
 	/**
