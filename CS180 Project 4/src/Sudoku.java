@@ -13,7 +13,7 @@ public class Sudoku {
 		// int[] testArray = new int[]{1,0,3,4,5,6,7,8,9};
 		// int[][] testBoard = new
 		// int[][]{testArray,testArray,testArray,testArray,testArray,testArray,testArray,testArray,testArray};
-		String code = "028007000016083070000020851137290000000730000000046307290070000000860140000300700";
+		String code = "504029003000000095800005720607051300240000058009480206068500001410000000700810902";
 		int[][] testBoard = Sudoku.stringToBoard(code);
 		Sudoku s = new Sudoku(testBoard);
 		s.solve();
