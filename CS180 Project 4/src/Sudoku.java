@@ -14,8 +14,10 @@ public class Sudoku {
 		// int[][] testBoard = new
 		// int[][]{testArray,testArray,testArray,testArray,testArray,testArray,testArray,testArray,testArray};
 		String code = "504029003000000095800005720607051300240000058009480206068500001410000000700810902";
+		
 		int[][] testBoard = Sudoku.stringToBoard(code);
 		Sudoku s = new Sudoku(testBoard);
+		s.printBoard();
 		s.solve();
 		s.printBoard();
 
