@@ -1,0 +1,68 @@
+
+import static org.junit.Assert.*;
+import junit.framework.TestCase;
+
+import org.junit.Before;
+import org.junit.Test;
+
+
+public class SudokuTest {
+
+	@Test
+	public void testSetBoard() {
+		Sudoku game = new Sudoku();
+		game.setBoard(game.stringToBoard("123564897456978031089231564645123978897056312231789645564897123078312456312645789"));
+		int[][] board = game.stringToBoard("123564897456978031089231564645123978897056312231789645564897123078312456312645789");
+		assertArrayEquals(game.board(), board);
+	}
+
+	@Test
+	public void testBoard() {
+		Sudoku game = new Sudoku();
+		int[][] board = game.stringToBoard("123564897456978031089231564645123978897056312231789645564897123078312456312645789");
+		game.setBoard(board);
+		
+		assertArrayEquals(game.board(), board);
+	}
+
+	@Test
+	public void testCandidates() {
+		Sudoku game = new Sudoku();
+		game.setBoard(game.stringToBoard("123564897456978031089231564645123978897056312231789645564897123978312456312645789"));
+		
+		boolean[] candidates = {false, false, false, false, false, false, true, false, false};
+		Boolean[] = new Boolean()
+		assertArrayEquals(method, candidates);
+		.assertEquals
+	}
+
+	@Test
+	public void testIsSolved() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testSolve() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testStringToBoard() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testPrintBoard() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testHiddenSingles() {
+		fail("Not yet implemented");
+	}
+	
+	public void testNakedSingles() {
+		
+	}
+
+}
