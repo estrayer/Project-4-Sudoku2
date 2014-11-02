@@ -131,11 +131,7 @@ public class Sudoku {
 	 * Exits when board is solved or no updates were made to the board.
 	 */
 	public void solve() {
-		int[][] oldBoard;
-
-		do {
-			
-		} while (!isSolved() && nakedSingles() && hiddenSingles());
+		while (!isSolved() && (nakedSingles() || hiddenSingles()));
 	}
 
 	/**
