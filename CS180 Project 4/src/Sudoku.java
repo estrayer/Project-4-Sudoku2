@@ -195,6 +195,8 @@ public class Sudoku {
 
 		for (int row = 0; row < board.length; row++) {
 			for (int col = 0; col < board.length; col++) {
+				if(board[row][col] == 0){
+				
 				boolean[] candidatesArray = candidates(row, col);
 				int candidateCount = 0;
 				int trueCandidate = 0;
@@ -207,6 +209,7 @@ public class Sudoku {
 				if (candidateCount == 1) {
 					board[row][col] = trueCandidate;
 					changed = true;
+				}
 				}
 			}
 		}
