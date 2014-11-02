@@ -13,15 +13,12 @@ public class Sudoku {
 		// int[] testArray = new int[]{1,0,3,4,5,6,7,8,9};
 		// int[][] testBoard = new
 		// int[][]{testArray,testArray,testArray,testArray,testArray,testArray,testArray,testArray,testArray};
-		String code = "412736589000000106568010370000850210100000008087090000030070865800000000000908401";
+		String code = "028007000016083070000020851137290000000730000000046307290070000000860140000300700";
 		int[][] testBoard = Sudoku.stringToBoard(code);
 		Sudoku s = new Sudoku(testBoard);
-		s.setBoard(s.board);
+		s.solve();
 		s.printBoard();
-		System.out.println(s.isSolved());
-		int[] location = s.findBoxRepresentative(4, 2);
-		System.out.println(location[0]);
-		System.out.println(location[1]);
+
 
 	}
 
@@ -131,8 +128,7 @@ public class Sudoku {
 	 * Exits when board is solved or no updates were made to the board.
 	 */
 	public void solve() {
-		while (!isSolved() && (nakedSingles() || hiddenSingles()))
-			;
+		while (!isSolved() && (nakedSingles() || hiddenSingles()));
 	}
 
 	/**
