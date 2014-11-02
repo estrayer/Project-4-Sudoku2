@@ -58,9 +58,19 @@ public class SudokuTest {
 	public void testHiddenSingles() {
 		fail("Not yet implemented");
 	}
-	
+	@Test
 	public void testNakedSingles() {
+		Sudoku game = new Sudoku();
 		
+		int[][] board = game.stringToBoard("412736589000000106568010370000850210100000008087090000030070865800000000000908401");
+		
+		game.setBoard(board);
+		
+		game.nakedSingles();
+		
+		board = game.stringToBoard("412736589000000106568010370000850210100000008087090600030070865800000000000908401");
+		
+		assertArrayEquals(game.board(), board);
 	}
 
 }
