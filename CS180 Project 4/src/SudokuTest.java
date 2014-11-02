@@ -60,9 +60,55 @@ public class SudokuTest {
 
 	@Test
 	public void testStringToBoard() {
-		fail("Not yet implemented");
+		Sudoku game = new Sudoku();
+		game.setBoard(Sudoku.stringToBoard("412736589000000106568010370000850210100000008087090000030070865800000000000908401"));
+		int[][] expected = new int[][]
+				{
+				{4,1,2,7,3,6,5,8,9},
+				{0,0,0,0,0,0,1,0,6},
+				{5,6,8,0,1,0,3,7,0},
+				{0,0,0,8,5,0,2,1,0},
+				{1,0,0,0,0,0,0,0,8},
+				{0,8,7,0,9,0,0,0,0},
+				{0,3,0,0,7,0,8,6,5},
+				{8,0,0,0,0,0,0,0,0},
+				{0,0,0,9,0,8,4,0,1}
+				};
+		boolean allEqual = true;
+		for(int i = 0; i < 9; i++) {
+			if(!Arrays.equals(expected[i], game.board()[i])) {
+				allEqual = false;
+			}
+		}
+		assertTrue(allEqual);
 	}
 
+	@Test
+	public void testStringToBoardFalse() {
+		Sudoku game = new Sudoku();
+		game.setBoard(Sudoku.stringToBoard("012736589000000106568010370000850210100000008087090000030070865800000000000908401"));
+		int[][] expected = new int[][]
+				{
+				{4,1,2,7,3,6,5,8,9},
+				{0,0,0,0,0,0,1,0,6},
+				{5,6,8,0,1,0,3,7,0},
+				{0,0,0,8,5,0,2,1,0},
+				{1,0,0,0,0,0,0,0,8},
+				{0,8,7,0,9,0,0,0,0},
+				{0,3,0,0,7,0,8,6,5},
+				{8,0,0,0,0,0,0,0,0},
+				{0,0,0,9,0,8,4,0,1}
+				};
+
+		boolean allEqual = true;
+		for(int i = 0; i < 9; i++) {
+			if(!Arrays.equals(expected[i], game.board()[i])) {
+				allEqual = false;
+			}
+		}
+		assertFalse(allEqual);
+	}
+	
 	@Test
 	public void testPrintBoard() {
 		fail("Not yet implemented");
