@@ -1,5 +1,9 @@
 
 import static org.junit.Assert.*;
+
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
 import junit.framework.TestCase;
 
 import org.junit.Before;
@@ -11,15 +15,15 @@ public class SudokuTest {
 	@Test
 	public void testSetBoard() {
 		Sudoku game = new Sudoku();
-		game.setBoard(game.stringToBoard("123564897456978031089231564645123978897056312231789645564897123078312456312645789"));
-		int[][] board = game.stringToBoard("123564897456978031089231564645123978897056312231789645564897123078312456312645789");
+		game.setBoard(Sudoku.stringToBoard("123564897456978031089231564645123978897056312231789645564897123078312456312645789"));
+		int[][] board = Sudoku.stringToBoard("123564897456978031089231564645123978897056312231789645564897123078312456312645789");
 		assertArrayEquals(game.board(), board);
 	}
 
 	@Test
 	public void testBoard() {
 		Sudoku game = new Sudoku();
-		int[][] board = game.stringToBoard("123564897456978031089231564645123978897056312231789645564897123078312456312645789");
+		int[][] board = Sudoku.stringToBoard("123564897456978031089231564645123978897056312231789645564897123078312456312645789");
 		game.setBoard(board);
 		
 		assertArrayEquals(game.board(), board);
@@ -28,10 +32,11 @@ public class SudokuTest {
 	@Test
 	public void testCandidates() {
 		Sudoku game = new Sudoku();
-		game.setBoard(game.stringToBoard("123564897456978031089231564645123978897056312231789645564897123978312456312645789"));
+		game.setBoard(Sudoku.stringToBoard("412736589000000106568010370000850210100000008087090000030070865800000000000908401"));
 		
-		boolean[] candidates = {false, false, false, false, false, false, true, false, false};
-		
+		boolean[] expected = {false, false, false, true, false, false, false, true, false, true};
+		boolean[] actual = game.candidates(1, 0);
+		assertTrue(Arrays.equals(expected, actual));
 	}
 
 	@Test
