@@ -90,17 +90,17 @@ public class Sudoku {
 	public boolean[] candidates(int row, int column) {
 		boolean[] result = new boolean[] { false, true, true, true, true, true,
 				true, true, true, true };
-		for (int x = 0; x < 9; x++) { //row
+		for (int x = 0; x < 9; x++) { // column
 			int value = board[x][column];
 			result[value] = false;
 		}
-		for (int y = 0; y < 9; y++) { //column
+		for (int y = 0; y < 9; y++) { // row
 			int value = board[row][y];
 			result[value] = false;
 		}
 		int[] location = findBoxRepresentative(row, column);
-		for (int x = location[0]; x < location[0]+3; x++) { //box
-			for (int y = location[1]; y < location[1]+3; y++) {
+		for (int x = location[0]; x < location[0] + 3; x++) { // box
+			for (int y = location[1]; y < location[1] + 3; y++) {
 				int value = board[x][y];
 				result[value] = false;
 			}
@@ -131,7 +131,8 @@ public class Sudoku {
 	 * Exits when board is solved or no updates were made to the board.
 	 */
 	public void solve() {
-		while (!isSolved() && (nakedSingles() || hiddenSingles()));
+		while (!isSolved() && (nakedSingles() || hiddenSingles()))
+			;
 	}
 
 	/**
@@ -188,11 +189,10 @@ public class Sudoku {
 	 *            column of cell
 	 * @return if the board was changed
 	 */
-	private boolean nakedSingles() {
-		
+	public boolean nakedSingles() {
+
 		boolean changed = false;
-		
-		
+
 		for (int row = 0; row < board.length; row++) {
 			for (int col = 0; col < board.length; col++) {
 				boolean[] candidatesArray = candidates(row, col);
@@ -210,7 +210,47 @@ public class Sudoku {
 				}
 			}
 		}
-		
+
+		return changed;
+	}
+
+	public boolean hiddenSinglesCell(int row, int column) {
+		boolean changed = false;
+		boolean[] candidatesArray = candidates(row, column);
+		for (int candidate = 1; candidate <= 9; candidate++) {
+			if (!candidatesArray[candidate]) {
+				continue;
+			}
+
+			boolean candidateExists = false;
+
+			for (int x = 0; x < 9; x++) { // column
+				if (candidates(x, column)[candidate]) {
+					candidateExists = true;
+				}
+			}
+
+			for (int y = 0; y < 9; y++) { // row
+				if (candidates(row, y)[candidate]) {
+					candidateExists = true;
+				}
+			}
+
+			int[] location = findBoxRepresentative(row, column);
+			for (int x = location[0]; x < location[0] + 3; x++) {
+				for (int y = location[1]; y < location[1] + 3; y++) {
+					if (candidates(row, y)[candidate]) {
+						candidateExists = true;
+					}
+				}
+			}
+			
+			if (!candidateExists) {
+				board[row][column] = candidate;
+				changed = true;
+				break;
+			}
+		}
 		return changed;
 	}
 
@@ -225,7 +265,14 @@ public class Sudoku {
 	 */
 	public boolean hiddenSingles() {
 		// TODO
-		return false;
+		boolean changed = false;
+		for (int row = 0; row < board.length; row++) {
+			for (int col = 0; col < board.length; col++) {
+				changed = hiddenSinglesCell(row, col);
+			}
+		}
+
+		return changed;
 	}
 
 	/**
