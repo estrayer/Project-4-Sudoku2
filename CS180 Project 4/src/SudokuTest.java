@@ -31,9 +31,7 @@ public class SudokuTest {
 		game.setBoard(game.stringToBoard("123564897456978031089231564645123978897056312231789645564897123978312456312645789"));
 		
 		boolean[] candidates = {false, false, false, false, false, false, true, false, false};
-		Boolean[] = new Boolean()
-		assertArrayEquals(method, candidates);
-		.assertEquals
+		
 	}
 
 	@Test
