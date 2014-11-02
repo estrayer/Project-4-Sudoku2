@@ -195,21 +195,21 @@ public class Sudoku {
 
 		for (int row = 0; row < board.length; row++) {
 			for (int col = 0; col < board.length; col++) {
-				if(board[row][col] == 0){
-				
-				boolean[] candidatesArray = candidates(row, col);
-				int candidateCount = 0;
-				int trueCandidate = 0;
-				for (int i = 0; i < candidatesArray.length; i++) {
-					if (candidatesArray[i]) {
-						candidateCount++;
-						trueCandidate = i;
+				if (board[row][col] == 0) {
+
+					boolean[] candidatesArray = candidates(row, col);
+					int candidateCount = 0;
+					int trueCandidate = 0;
+					for (int i = 0; i < candidatesArray.length; i++) {
+						if (candidatesArray[i]) {
+							candidateCount++;
+							trueCandidate = i;
+						}
 					}
-				}
-				if (candidateCount == 1) {
-					board[row][col] = trueCandidate;
-					changed = true;
-				}
+					if (candidateCount == 1) {
+						board[row][col] = trueCandidate;
+						changed = true;
+					}
 				}
 			}
 		}
@@ -247,7 +247,7 @@ public class Sudoku {
 					}
 				}
 			}
-			
+
 			if (!candidateExists) {
 				board[row][column] = candidate;
 				changed = true;
@@ -271,7 +271,9 @@ public class Sudoku {
 		boolean changed = false;
 		for (int row = 0; row < board.length; row++) {
 			for (int col = 0; col < board.length; col++) {
-				changed = hiddenSinglesCell(row, col);
+				if (board[row][col] == 0) {
+					changed = hiddenSinglesCell(row, col);
+				}
 			}
 		}
 
