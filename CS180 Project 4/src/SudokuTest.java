@@ -116,7 +116,9 @@ public class SudokuTest {
 
 	@Test
 	public void testHiddenSingles() {
-		fail("Not yet implemented");
+		Sudoku game = new Sudoku();
+		int[][] board = game.stringToBoard("028007000 016083070 00020851 137290000 000730000 000046307 290070000 000860140 000300700");
+		
 	}
 	@Test
 	public void testNakedSingles() {
